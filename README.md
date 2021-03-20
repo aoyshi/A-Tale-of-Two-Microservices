@@ -14,9 +14,12 @@
 
 ### Create base node project
 
-npm init
-npm install express nodemon axios crypto
+`npm init`
+
+`npm install express nodemon axios crypto`
+
 I created a GET route to `/romeo/rocks`
+
 Listening at port `3001`
 
 ### Containerize using Docker
