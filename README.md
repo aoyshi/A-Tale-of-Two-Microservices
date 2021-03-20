@@ -186,9 +186,7 @@ Install Skaffold (Windows: use powershell, not cmd)
 
 `https://skaffold.dev/docs/install/`
 
-Create Skaffold config file in root dir of entire project (outside infra)
-
-`skaffold.yaml`
+Create Skaffold config file in root dir of entire project (outside infra): `skaffold.yaml`
 
 Start Skaffold
 
