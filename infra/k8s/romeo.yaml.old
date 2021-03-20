@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: romeo
+  labels:
+    app: romeo
+spec:
+  containers:
+    - name: romeo
+      image: aoyshi/romeo
