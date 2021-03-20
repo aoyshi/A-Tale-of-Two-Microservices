@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-srv
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: romeojuliet.com
+      http:
+        paths:
+          - path: /romeo/rocks
+            backend:
+              serviceName: romeo-srv
+              servicePort: 3001
+          - path: /romeo/rocks/throw
+            backend:
+              serviceName: romeo-srv
+              servicePort: 3001

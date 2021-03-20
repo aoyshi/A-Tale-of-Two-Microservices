@@ -78,11 +78,11 @@ Using browser/POSTMAN, reach pod via:
 
 Every time source code changes are made:
 
-re-build docker image and push to hub (in project dir)
+Re-build docker image and push to hub (in project dir)
 `docker build -t aoyshi/romeo .`
 `docker push aoyshi/romeo`
 
-restart deployment file (in infra/k8s dir)
+Restart deployment file (in infra/k8s dir)
 `kubectl rollout restart deployment`
 
 ### Create Kubernetes ClusterIP Service to access Pod from within cluster
@@ -96,3 +96,47 @@ Confirm creation
 
 From other pods in cluster, reach romeo pod via:
 `http://romeo-srv:3001/romeo/rocks`
+
+### Install Ingress-NGINX
+
+Follow directions from their website:
+`https://kubernetes.github.io/ingress-nginx/deploy/`
+
+### Configure Ingress-NGINX Controller
+
+Create Ingress config file `ingress-srv.yaml` with routing rules (mapping URL to Services)
+
+Apply config
+`kubectl apply -f ingress-srv.yaml`
+
+My host in the config file is `host: romeojuliet.com`
+
+### Window Hosts File Changes
+
+Open Windows Hosts File as Admin
+`C:\Windows\System32\drivers\etc\hosts`
+Add this line to the end of the file (so all DNS hits to romeojuliet.com will be re-routed to localhost)
+`127.0.0.1 romeojuliet.com`
+Open windows cmd as admin and flush DNS cache
+`ipconfig /flushdns`
+Now from browser/POSTMAN, we can access pods via:
+`http://romeojuliet.com/romeo/rocks`
+
+### Skaffold Setup
+
+Skaffold runs OUTSIDE of k8s cluster and automates a lot of the above processes when updating source code or config files.
+
+1. Upon startup: applies all k8s config files
+2. Running/watching: re-apply any config to our cluster if it changes
+3. Upon shutdown: delete all objects related to these config files from cluster
+
+Install Skaffold (Windows: use powershell, not cmd)
+`https://skaffold.dev/docs/install/`
+
+Create Skaffold config file in root dir of entire project (outside infra)
+`skaffold.yaml`
+
+Start Skaffold
+`skaffold dev`
+
+Now if you make changes to sourcecode/configs, skaffold should auto update everything for you. `Ctrl+C` to stop Skaffold.

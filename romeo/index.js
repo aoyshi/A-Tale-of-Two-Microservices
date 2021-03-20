@@ -12,7 +12,7 @@ app.get('/romeo/rocks', (req, res) => {
   res.status(200).send(`All rocks thrown: ${JSON.stringify(rocks)}`);
 });
 
-app.post('/romeo/rocks', (req, res) => {
+app.post('/romeo/rocks/throw', (req, res) => {
   const { size, time } = req.body;
   const id = randomBytes(4).toString('hex');
   rocks.push({ id, size, time });
