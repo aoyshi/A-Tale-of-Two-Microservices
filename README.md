@@ -24,21 +24,21 @@ Listening at port `3001`
 
 ### Containerize using Docker
 
-create base `Dockerfile` and `.dockerignore` file in project dir
+Create base `Dockerfile` and `.dockerignore` file in project dir
 
-create docker image with custom tag
+Create docker image with custom tag
 
 `docker build -t aoyshi/romeo .`
 
-create and start container from above image tag
+Create and start container from above image tag
 
 `docker run aoyshi/romeo`
 
-print out all runnning containers and confirm above steps
+Print out all runnning containers and confirm above steps
 
 `docker ps`
 
-push to docker hub
+Push to docker hub
 
 `docker push aoyshi/romeo`
 
@@ -166,7 +166,7 @@ Add this line to the end of the file (so all DNS hits to romeojuliet.com will be
 
 `127.0.0.1 romeojuliet.com`
 
-Open windows cmd as admin and flush DNS cache
+Open Windows cmd as admin and flush DNS cache
 
 `ipconfig /flushdns`
 
