@@ -16,3 +16,11 @@ build:
         manual:
           - src: '*.js'
             dest: .
+    - image: aoyshi/juliet
+      context: juliet
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
