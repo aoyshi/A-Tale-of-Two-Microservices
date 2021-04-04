@@ -193,3 +193,17 @@ Start Skaffold
 `skaffold dev`
 
 Now if you make changes to sourcecode/configs, skaffold should auto update everything for you. `Ctrl+C` to stop Skaffold.
+
+## Remote Development using Google Cloud
+
+1. Sign up for Google Cloud account and create a new project. For exampe, `romeojuliet-dev`.
+2. Create a Cluster under Kubernetes Engine. Name the cluster `romeojuliet-dev` and set the Location to the one closest to you geographically. Mine was`us-east1-c`.
+3. Install Google SDK. Confirm by typing "gcloud" in terminal to see help text. Login using `gcloud auth login`.
+4. Initialize Google SDK - `gcloud init` -> choose your current Google Cloud account email and project ID (this might be different based on what GCloud randomly assigned it to be unique - go to projects page and find the exact unique ID). Choose same Zone as `us-east1-c` in Step 2.
+5. Install GCloud Context: `gcloud container clusters get-credentials romeojuliet-dev`. 
+6. Make sure your PC kubernetes is now using the GCloud context instead of your local docker-desktop context for creating all clusters: `kubectl config get-contexts`. Change default context using `kubectl config use-context <context-name>`
+7. Go to Google Cloud account and ENABLE Google Cloud Build (the History tab in this section will house all logs of builds using `skaffold dev`)
+8. Make changes to `skaffold.yml` and `romeo-depl.yml` (see `skaffold.remote.yml` and `romeo-depl.remote.yml` for syntax) to work with gcloud context.
+9. Once in the gcloud context, set up ingress-nginx using same steps as installing it locally.
+10. In your PC's hosts file -> map `romeojuliet.com` to IP address of the load balancer created by Ingress-Nginx on GCloud. Go to GC's Networking > Networking Services > Load Balancing ----> It will have its own IP address, e.g. `33.33.333.333   romeojuliet.com`
+
