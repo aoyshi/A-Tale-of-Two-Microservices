@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: romeo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: romeo
+  template:
+    metadata:
+      labels:
+        app: romeo
+    spec:
+      containers:
+        - name: romeo
+          image: us.gcr.io/romeojuliet-dev/romeo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: romeo-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: romeo
+  ports:
+    - name: romeo
+      protocol: TCP
+      port: 3001
+      targetPort: 3001
