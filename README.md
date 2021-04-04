@@ -203,7 +203,7 @@ Now if you make changes to sourcecode/configs, skaffold should auto update every
 5. Install GCloud Context: `gcloud container clusters get-credentials romeojuliet-dev`. 
 6. Make sure your PC kubernetes is now using the GCloud context instead of your local docker-desktop context for creating all clusters: `kubectl config get-contexts`. Change default context using `kubectl config use-context <context-name>`
 7. Go to Google Cloud account and ENABLE Google Cloud Build (the History tab in this section will house all logs of builds using `skaffold dev`)
-8. Make changes to `skaffold.yml` and `romeo-depl.yml` (see `skaffold.remote.yml` and `romeo-depl.remote.yml` for syntax) to work with gcloud context.
+8. Make changes to `skaffold.yml` and `romeo-depl.yml` (see `skaffold.yaml.remote` and `romeo-depl.yml.remote` for syntax) to work with gcloud context.
 9. Once in the gcloud context, set up ingress-nginx using same steps as installing it locally.
 10. In your PC's hosts file -> map `romeojuliet.com` to IP address of the load balancer created by Ingress-Nginx on GCloud. Go to GC's Networking > Networking Services > Load Balancing ----> It will have its own IP address, e.g. `33.33.333.333   romeojuliet.com`
 
