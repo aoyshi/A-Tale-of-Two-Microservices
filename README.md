@@ -2,6 +2,22 @@
 
 2 Node microservices (Romeo and Juliet) with a simple React client, all made from scratch and souped up with Docker, Kubernetes, Ingress NGINX and Skaffold.
 
+---
+
+## How to Run and Use:
+
+From project root dir
+
+`skaffold dev`
+
+From browser
+
+`http://romeojuliet.com/`
+
+---
+
+## Project Setup for Dev:
+
 ### Clone repo and create working branch
 
 `git init`
