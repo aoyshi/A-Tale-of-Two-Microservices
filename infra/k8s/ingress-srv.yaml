@@ -17,3 +17,11 @@ spec:
             backend:
               serviceName: romeo-srv
               servicePort: 3001
+          - path: /juliet/windows
+            backend:
+              serviceName: juliet-srv
+              servicePort: 3002
+          - path: /juliet/taptap
+            backend:
+              serviceName: juliet-srv
+              servicePort: 3002

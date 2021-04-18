@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: juliet-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: juliet
+  template:
+    metadata:
+      labels:
+        app: juliet
+    spec:
+      containers:
+        - name: juliet
+          image: aoyshi/juliet
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: juliet-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: juliet
+  ports:
+    - name: juliet
+      protocol: TCP
+      port: 3002
+      targetPort: 3002
