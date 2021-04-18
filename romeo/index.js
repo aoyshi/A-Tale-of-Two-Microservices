@@ -1,9 +1,11 @@
 const express = require('express');
 const { randomBytes } = require('crypto');
 const { default: axios } = require('axios');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const PORT = 3001;
 const rocks = [];
@@ -22,9 +24,11 @@ app.post('/romeo/rocks/throw', async (req, res) => {
   const event = { type: 'rockThrown', data: rock };
   await axios.post('http://juliet-srv:3002/juliet/taptap', event);
 
-  res.status(201).send(`Romeo threw a ${size} rock at Juliet's window during the ${time}.`);
+  res
+    .status(201)
+    .send(`Romeo threw a ${size} rock at Juliet's window during the ${time}.`);
 });
 
 app.listen(PORT, () => {
-  console.log(`Romeo waiting at ${PORT}...`)
+  console.log(`Romeo waiting at ${PORT}...`);
 });
