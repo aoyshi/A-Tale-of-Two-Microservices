@@ -128,7 +128,7 @@ Restart deployment file (in infra/k8s dir)
 
 Co-locate clusterIP service configs within depl file, since they are always 1:1 ratio.
 
-Re-apply deply config file to create the service
+Re-apply depl config file to create the service
 
 `kubectl apply -f romeo-depl.yaml`
 
@@ -194,6 +194,21 @@ Start Skaffold
 
 Now if you make changes to sourcecode/configs, skaffold should auto update everything for you. `Ctrl+C` to stop Skaffold.
 
+## React Client Front-End App
+Create basic react app in project root dir
+
+`npx create-react-app client`
+
+Delete all files in `client/src` except for `App.js` and `index.js`
+
+Make sure to install `cors` in all microservices (`npm install cors` in both `romeo/` and `juliet/` dirs, and `app.use(cors())` in both of their `index.js` files) so that you can make axios requests to them from your react client.
+
+Add same docker and k8s steps as for romeo microservice.
+
+In `ingress-srv.yaml`, add path to client service for `path: /?(.*)`. Restart skaffold.
+
+Now can access react app frontend from browser via `http://romeojuliet.com/`
+
 ## Remote Development using Google Cloud
 
 1. Sign up for Google Cloud account and create a new project. For exampe, `romeojuliet-dev`.
@@ -206,4 +221,3 @@ Now if you make changes to sourcecode/configs, skaffold should auto update every
 8. Make changes to `skaffold.yml` and `romeo-depl.yml` (see `skaffold.yaml.remote` and `romeo-depl.yml.remote` for syntax) to work with gcloud context.
 9. Once in the gcloud context, set up ingress-nginx using same steps as installing it locally.
 10. In your PC's hosts file -> map `romeojuliet.com` to IP address of the load balancer created by Ingress-Nginx on GCloud. Go to GC's Networking > Networking Services > Load Balancing ----> It will have its own IP address, e.g. `33.33.333.333   romeojuliet.com`
-
