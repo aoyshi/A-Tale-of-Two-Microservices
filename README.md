@@ -6,15 +6,10 @@
 
 ## How to Run and Use:
 
-1. Modify your Windows hosts file as specified in "Window Hosts File Changes" (Line 177)
-
-2. From project root dir, run in cmd:
-
-`skaffold dev`
-
-3. Then, from browser, access via:
-
-`http://romeojuliet.com/`
+1. Make sure you have Docker, Kubernetes and Ingress-nginx installed on your local machine
+2. Modify your Windows hosts file as specified in "Window Hosts File Changes" (Line 172)
+3. From project root dir, run in cmd: `skaffold dev`
+4. Then, from browser, access via: `http://romeojuliet.com/`
 
 ---
 
