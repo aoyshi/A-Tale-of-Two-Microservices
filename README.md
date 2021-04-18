@@ -6,11 +6,13 @@
 
 ## How to Run and Use:
 
-From project root dir
+1. Modify your Windows hosts file as specified in "Window Hosts File Changes" (Line 177)
+
+2. From project root dir, run in cmd:
 
 `skaffold dev`
 
-From browser
+3. Then, from browser, access via:
 
 `http://romeojuliet.com/`
 
